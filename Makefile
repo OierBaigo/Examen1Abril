@@ -2,24 +2,24 @@
 main: build-image build-container
 
 build-image:
-	docker build -t fizzbuzz-php .
+	docker build -t examen .
 
 build-container:
-	docker run -dt --name fizzbuzz-php -v .:/540/FizzBuzz fizzbuzz-php
-	docker exec fizzbuzz-php composer install
+	docker run -dt --name examen -v .:/540/Examen examen
+	docker exec examen composer install
 
 start:
-	docker start fizzbuzz-php
+	docker start examen
 
 test: start
-	docker exec fizzbuzz-php ./vendor/bin/phpunit tests/$(target)
+	docker exec examen ./vendor/bin/phpunit tests/$(target)
 
 shell: start
-	docker exec -it fizzbuzz-php /bin/bash
+	docker exec -it examen /bin/bash
 
 stop:
-	docker stop fizzbuzz-php
+	docker stop examen
 
 clean: stop
-	docker rm fizzbuzz-php
+	docker rm examen
 	rm -rf vendor
