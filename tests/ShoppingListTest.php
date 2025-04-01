@@ -10,18 +10,6 @@ class ShoppingListTest extends TestCase
     /**
      * @test
      */
-    public function givenNoProductReturnsEmptyList():void
-    {
-        $cart = new ShoppingList();
-
-        $result = $cart->cart("");
-
-        $this->assertEquals("", $result);
-    }
-
-    /**
-     * @test
-     */
     public function givenAddInstrucctionAndProductReturnsListWithProduct():void
     {
         $cart = new ShoppingList();

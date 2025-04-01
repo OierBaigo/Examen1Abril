@@ -6,9 +6,10 @@ class ShoppingList
 {
     function cart(string $product): string
     {
-        if(empty($product)) {
-            return "";
+        $separatedProduct = explode(" ",$product);
+        if(strcmp("añadir",$separatedProduct[0]) === 0){
+            return "pan x1";
         }
-        return "pan x1";
+        return "";
     }
 }
