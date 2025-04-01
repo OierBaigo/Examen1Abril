@@ -8,31 +8,19 @@ use PHPUnit\Framework\TestCase;
 class ShoppingListTest extends TestCase
 {
     private string $shoppingList;
-    /**
-     * @test
-     */
-    public function givenAddInstructionAndProductReturnsListWithProduct():void
-    {
-        $shoppingList = "";
-        $cart = new ShoppingList($shoppingList);
-
-        $result = $cart->cart("añadir pan");
-
-        $this->assertEquals("pan x1", $result);
-    }
 
     /**
      * @test
      */
-    public function givenAddInstructionAndMultipleProductsReturnsListWithProduct():void
+    public function givenAddInstructionAndMultipleProductsAndQuantitiesReturnsListWithProductsAndQuantities():void
     {
         $shoppingList = "";
         $cart = new ShoppingList($shoppingList);
 
-        $cart->cart("añadir leche");
-        $result = $cart->cart("añadir pan");
+        $cart->cart("añadir leche 2");
+        $result = $cart->cart("añadir pan 3");
 
-        $this->assertEquals("leche x1, pan x1", $result);
+        $this->assertEquals("leche x2, pan x3", $result);
     }
 
     /**
@@ -47,6 +35,7 @@ class ShoppingListTest extends TestCase
 
         $this->assertEquals("pan x2", $result);
     }
+
 
 
 }
