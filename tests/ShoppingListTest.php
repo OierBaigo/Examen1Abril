@@ -11,7 +11,7 @@ class ShoppingListTest extends TestCase
     /**
      * @test
      */
-    public function givenAddInstrucctionAndProductReturnsListWithProduct():void
+    public function givenAddInstructionAndProductReturnsListWithProduct():void
     {
         $shoppingList = "";
         $cart = new ShoppingList($shoppingList);
@@ -24,7 +24,7 @@ class ShoppingListTest extends TestCase
     /**
      * @test
      */
-    public function givenAddInstrucctionAndMultipleProductsReturnsListWithProduct():void
+    public function givenAddInstructionAndMultipleProductsReturnsListWithProduct():void
     {
         $shoppingList = "";
         $cart = new ShoppingList($shoppingList);
@@ -34,5 +34,19 @@ class ShoppingListTest extends TestCase
 
         $this->assertEquals("leche x1, pan x1", $result);
     }
+
+    /**
+     * @test
+     */
+    public function givenAddInstructionAndProductAndQuantityReturnsListWithProductAndQuantity():void
+    {
+        $shoppingList = "";
+        $cart = new ShoppingList($shoppingList);
+
+        $result = $cart->cart("añadir pan 2");
+
+        $this->assertEquals("pan x2", $result);
+    }
+
 
 }
