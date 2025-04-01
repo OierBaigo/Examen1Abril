@@ -7,12 +7,14 @@ use PHPUnit\Framework\TestCase;
 
 class ShoppingListTest extends TestCase
 {
+    private string $shoppingList;
     /**
      * @test
      */
     public function givenAddInstrucctionAndProductReturnsListWithProduct():void
     {
-        $cart = new ShoppingList();
+        $shoppingList = "";
+        $cart = new ShoppingList($shoppingList);
 
         $result = $cart->cart("añadir pan");
 
