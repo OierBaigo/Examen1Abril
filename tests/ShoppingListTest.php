@@ -36,6 +36,27 @@ class ShoppingListTest extends TestCase
         $this->assertEquals("pan x2", $result);
     }
 
+    /**
+     * @test
+     */
+    public function givenTheSameProductTwiceReturnsListWithSameProductAndSumQuantities():void
+    {
+        $shoppingList = "";
+        $cart = new ShoppingList($shoppingList);
+
+        $cart->cart("añadir pan");
+        $result = $cart->cart("añadir pan 2");
+
+        $this->assertEquals("pan x3", $result);
+    }
+
+    /**
+     * @test
+     */
+    public function givenEliminateInstructionReturnsListWithoutProduct():void
+    {
+
+    }
 
 
 }

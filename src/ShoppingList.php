@@ -55,12 +55,31 @@ class ShoppingList
     {
         if (!$this->isFirstProduct()) {
             $this->shoppingList .= ", ";
+            if (str_contains($separatedProduct[1], $this->shoppingList)) {
+                $repitedProductPos = strpos($separatedProduct[1], $this->shoppingList);
+                if ($this->inputHasQuantity($separatedProduct)) {
+                    $nuevaCantidad = intval($this->shoppingList[$repitedProductPos + 1]) + intval($separatedProduct[2]);
+                    $this->shoppingList[$repitedProductPos + 1] = $nuevaCantidad;
+                } else {
+                    $nuevaCantidad = intval($this->shoppingList[$repitedProductPos + 1]) + 1;
+                    $this->shoppingList[$repitedProductPos + 1] = $nuevaCantidad;
+                }
+            } else {
+                if ($this->inputHasQuantity($separatedProduct)) {
+                    $this->shoppingList .= $separatedProduct[1] . " x" . $separatedProduct[2];
+                } else {
+                    $this->shoppingList .= $separatedProduct[1] . " x1";
+                }
+            }
         }
-        if ($this->inputHasQuantity($separatedProduct)) {
-            $this->shoppingList .= $separatedProduct[1] . " x" . $separatedProduct[2];
-        } else {
-            $this->shoppingList .= $separatedProduct[1] . " x1";
+        else {
+            if ($this->inputHasQuantity($separatedProduct)) {
+                $this->shoppingList .= $separatedProduct[1] . " x" . $separatedProduct[2];
+            } else {
+                $this->shoppingList .= $separatedProduct[1] . " x1";
+            }
         }
+
         return $this->shoppingList;
     }
 }
