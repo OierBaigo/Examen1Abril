@@ -15,18 +15,57 @@ class ShoppingList
     function cart(string $product): string
     {
         $separatedProduct = explode(" ",$product);
-        if(strcmp("añadir",$separatedProduct[0]) === 0){
-            if(empty($this->shoppingList)) {
-                if(count($separatedProduct) === 3){
-                    $this->shoppingList .= $separatedProduct[1] . " x" . $separatedProduct[2];
-                }else{
-                    $this->shoppingList .= $separatedProduct[1] . " x1";
-                }
-            }
-            else
-                $this->shoppingList .= ", " . $separatedProduct[1] . " x1";
-            return  $this->shoppingList;
+        if($this->isAdd($separatedProduct[0])) {
+            return $this->addProductToShoppingList($separatedProduct);
         }
         return "";
+    }
+
+    /**
+     * @param $string2
+     * @return bool
+     */
+    private function isAdd($string2): bool
+    {
+        return strcmp("añadir", $string2) === 0;
+    }
+
+    /**
+     * @return bool
+     */
+    private function isFirstProduct(): bool
+    {
+        return empty($this->shoppingList);
+    }
+
+    /**
+     * @param array $separatedProduct
+     * @return bool
+     */
+    private function inputHasQuantity(array $separatedProduct): bool
+    {
+        return count($separatedProduct) === 3;
+    }
+
+    /**
+     * @param array $separatedProduct
+     * @return string
+     */
+    private function addProductToShoppingList(array $separatedProduct): string
+    {
+        if ($this->isFirstProduct()) {
+            if ($this->inputHasQuantity($separatedProduct)) {
+                $this->shoppingList .= $separatedProduct[1] . " x" . $separatedProduct[2];
+            } else {
+                $this->shoppingList .= $separatedProduct[1] . " x1";
+            }
+        } else {
+            if ($this->inputHasQuantity($separatedProduct)) {
+                $this->shoppingList .= ", " . $separatedProduct[1] . " x" . $separatedProduct[2];
+            } else {
+                $this->shoppingList .= ", " . $separatedProduct[1] . " x1";
+            }
+        }
+        return $this->shoppingList;
     }
 }
