@@ -16,7 +16,10 @@ class ShoppingList
     {
         $separatedProduct = explode(" ",$product);
         if(strcmp("añadir",$separatedProduct[0]) === 0){
-            $this->shoppingList .= $separatedProduct[1] . " x1";
+            if(empty($this->shoppingList))
+                $this->shoppingList .= $separatedProduct[1] . " x1";
+            else
+                $this->shoppingList .= ", " . $separatedProduct[1] . " x1";
             return  $this->shoppingList;
         }
         return "";
