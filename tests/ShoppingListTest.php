@@ -17,10 +17,10 @@ class ShoppingListTest extends TestCase
         $shoppingList = "";
         $cart = new ShoppingList($shoppingList);
 
-        $cart->cart("añadir leche 2");
+        $cart->cart("añadir leche");
         $result = $cart->cart("añadir pan 3");
 
-        $this->assertEquals("leche x2, pan x3", $result);
+        $this->assertEquals("leche x1, pan x3", $result);
     }
 
     /**

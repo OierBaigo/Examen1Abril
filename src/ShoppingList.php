@@ -53,18 +53,13 @@ class ShoppingList
      */
     private function addProductToShoppingList(array $separatedProduct): string
     {
-        if ($this->isFirstProduct()) {
-            if ($this->inputHasQuantity($separatedProduct)) {
-                $this->shoppingList .= $separatedProduct[1] . " x" . $separatedProduct[2];
-            } else {
-                $this->shoppingList .= $separatedProduct[1] . " x1";
-            }
+        if (!$this->isFirstProduct()) {
+            $this->shoppingList .= ", ";
+        }
+        if ($this->inputHasQuantity($separatedProduct)) {
+            $this->shoppingList .= $separatedProduct[1] . " x" . $separatedProduct[2];
         } else {
-            if ($this->inputHasQuantity($separatedProduct)) {
-                $this->shoppingList .= ", " . $separatedProduct[1] . " x" . $separatedProduct[2];
-            } else {
-                $this->shoppingList .= ", " . $separatedProduct[1] . " x1";
-            }
+            $this->shoppingList .= $separatedProduct[1] . " x1";
         }
         return $this->shoppingList;
     }
