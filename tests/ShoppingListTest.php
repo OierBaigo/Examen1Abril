@@ -19,4 +19,17 @@ class ShoppingListTest extends TestCase
         $this->assertEquals("", $result);
     }
 
+    /**
+     * @test
+     */
+    public function givenAddInstrucctionAndProductReturnsListWithProduct():void
+    {
+        $cart = new ShoppingList();
+
+        $result = $cart->cart("añadir pan");
+
+        $this->assertEquals("pan x1", $result);
+    }
+
+
 }
